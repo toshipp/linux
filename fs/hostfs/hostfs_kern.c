@@ -284,7 +284,7 @@ static int hostfs_readdir(struct file *file, struct dir_context *ctx)
 	int error, len;
 	unsigned int type;
 
-	name = dentry_name(file->f_path.dentry);
+	name = dentry_name(file_dentry(file));
 	if (name == NULL)
 		return -ENOMEM;
 	dir = open_dir(name, &error);
@@ -323,7 +323,7 @@ retry:
 	if (mode & FMODE_WRITE)
 		r = w = 1;
 
-	name = dentry_name(file->f_path.dentry);
+	name = dentry_name(file_dentry(file));
 	if (name == NULL)
 		return -ENOMEM;
 
